@@ -1,6 +1,6 @@
 <template>
   <div>
-    <textarea v-model="input" @change="parseAndDisplay"></textarea>
+    <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
     <pre>
       {{ JSON.stringify(result, null, 2) }}
     </pre>

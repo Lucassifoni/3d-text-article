@@ -3,8 +3,8 @@
     <article>
       <header>
         <div class="inner">
-          <h1>{{ $options.$parts.title }}</h1>
-        <p>{{ $options.$parts.description }}</p>
+          <h1>{{ $options.$parts.title }}</h1>
+        <p>{{ $options.$parts.description }}</p>
         </div>
       </header>
       <ab-toc>
@@ -15,10 +15,10 @@
         </ul>
       </ab-toc>
       <ab-content>
-        <div v-for="(part, index) in $options.$parts.parts" :id="`#part-${index}`">
-          <h2>#{{ index }} - {{ part.title }}</h2>
-          <h3>{{ part.description }}</h3>
-          <component  :key="index" :is="part.component"></component>
+        <div v-for="(part, index) in $options.$parts.parts" :id="`#part-${index}`" :key="index">
+          <h2>#{{ index }} - {{ part.title }}</h2>
+          <h3>{{ part.description }}</h3>
+          <component :is="part.component"></component>
         </div>
       </ab-content>
     </article>
@@ -29,6 +29,7 @@
 import AbContent from './components/Content';
 import AbToc from './components/Toc';
 import mapping from './components/mapping';
+/* eslint-disable-next-line */
 import highlight from './highlight/highlight.pack.js';
 
 export default {
