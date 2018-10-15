@@ -158,10 +158,15 @@
     <parser-fifth-step></parser-fifth-step>
 
     h3 Transforming our original path to a scaled-up version
-    p I'm not sure how to proceed for this one, but : for three points (or vector) a, b, and c, the point b' will be equal to the vector b added to the vector going from the middle of the segment <em>ac</em> to b. Let's draw points instead of lines now, by writing a converter from instructions to points. A brute version would be to reduce instruction points to a list, then deduplicate adjacent items.
+    p I'm not sure how to proceed for this one, but : for three points (or vector) a, b, and c, the point b' will be equal to the vector b added to the vector going from the middle of the segment <em>ac</em> to b.
+      | Let's draw points instead of lines now, by writing a converter from instructions to points. A brute version would be to reduce instruction points to a list, then deduplicate adjacent items.
     p Meaning : move([1,0]), line([1,0] [5,0]), line([5, 0] [7,2]) becomes [1,0],[1,0],[5,0],[5,0],[7,2] then [1,0],[5,0],[7,2].
     <parser-sixth-step></parser-sixth-step>
-    p We now have points instead of curves, we'll proceed to do this scale-up algorithm.
+    p We now have points instead of curves, we'll proceed to do this scale-up algorithm. Or will we ?
+      | It happens that the problem I'm trying to solve is really non-trivial. With a bit more research (and stumbling on the right terms), what I'm trying to solve is called "outward polygon offsetting".
+      | <a href="https://stackoverflow.com/questions/1109536/an-algorithm-for-inflating-deflating-offsetting-buffering-polygons">A stackoverflow answer</a> gave me some direction. <a href="http://fcacciola.50webs.com/Offseting%20Methods.htm">This survey gave a nice answer too.</a>
+      | What if a simpler strategy could work ? I could reimplement a C++/C#/Delphi library called <a href="http://www.angusj.com/delphi/clipper.php">Clipper</a>, or find a "nice enough" heuristic.
+      | I could copy-paste a stroke algorithm and take its output before rendering. Let's dive into Inkscape sources.
 </template>
 
 <script>

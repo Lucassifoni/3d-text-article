@@ -4,7 +4,7 @@
       <a href="http://www.antigrain.com/research/adaptive_bezier/index.html">Maxim Shemanarev</a> gives us a reference implementation in C++. That will be easy to convert. I'll take the most naïve one, given at the start of the article, and, no matter the curve, will generate 10 lines out of it.</p>
       <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
       <foldable-pre>{{ result }}</foldable-pre>
-      <canvas id="parserthirdstep-canvas" width="100" height="100"></canvas>
+      <canvas id="parserthirdstep-canvas" width="300" height="300"></canvas>
   </div>
 </template>
 
@@ -34,7 +34,7 @@
         const c = this.$options.$context;
         c.fillStyle = 'lightblue';
         c.strokeStyle = 'black';
-        c.fillRect(0,0, 100, 100);
+        c.fillRect(0,0, 300, 300);
         renderToCanvas(remapInstrs(parse(this.input)), c);
       },
     },

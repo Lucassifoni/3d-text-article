@@ -2,7 +2,7 @@
   <div>
     <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
       <foldable-pre>{{ result }}</foldable-pre>
-      <canvas id="parserthirdstep-canvas" width="100" height="100"></canvas>
+      <canvas id="parserthirdstep-canvas" width="300" height="300"></canvas>
   </div>
 </template>
 
@@ -32,7 +32,7 @@
         const c = this.$options.$context;
         c.fillStyle = 'lightblue';
         c.strokeStyle = 'black';
-        c.fillRect(0,0, 100, 100);
+        c.fillRect(0,0, 300, 300);
         renderToCanvas(parse(this.input), c);
       },
     },

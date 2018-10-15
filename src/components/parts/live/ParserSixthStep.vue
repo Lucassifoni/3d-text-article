@@ -2,14 +2,15 @@
   <div>
       <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
       <foldable-pre>{{ result }}</foldable-pre>
-      <canvas id="parserthirdstep-canvas" width="100" height="100"></canvas>
+      <canvas width="300" height="300"></canvas>
+      <canvas width="300" height="300"></canvas>
   </div>
 </template>
 
 <script>
   import { parse, tokenize, STATES, remapInstrs, convertToPoints } from './parserSixthStep';
-  import { render as renderToString } from './renderToString2';
   import { render as renderToCanvas } from './renderToCanvas3';
+  import { render as renderToCanvas4 } from './renderToCanvas4';
   import FoldablePre from './../FoldablePre';
 
   export default {
@@ -32,13 +33,20 @@
         const c = this.$options.$context;
         c.fillStyle = 'lightblue';
         c.strokeStyle = 'black';
-        c.fillRect(0,0, 100, 100);
-        renderToCanvas(convertToPoints(remapInstrs(parse(this.input))), c);
+        c.fillRect(0,0, 300, 300);
+        renderToCanvas(convertToPoints(remapInstrs(parse(this.input))).map(p => ({ x: p.x * 6 - 100, y: p.y * 6 - 100})), c);
+        const d = this.$options.$context1;
+        d.fillStyle = 'lightblue';
+        d.strokeStyle = 'black';
+        d.fillRect(0,0, 300, 300);
+        renderToCanvas4(convertToPoints(remapInstrs(parse(this.input))).map(p => ({ x: p.x * 6 - 100, y: p.y * 6 - 100})), d);
       },
     },
     mounted() {
       this.$options.$canvas = this.$el.getElementsByTagName('canvas')[0];
+      this.$options.$canvas1 = this.$el.getElementsByTagName('canvas')[1];
       this.$options.$context = this.$options.$canvas.getContext('2d');
+      this.$options.$context1 = this.$options.$canvas1.getContext('2d');
       this.parseAndDisplay();
     },
   };
