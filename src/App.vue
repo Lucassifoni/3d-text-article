@@ -57,7 +57,7 @@ export default {
 
 body {
   width: 100%;
-  max-width: 1136px;
+  max-width: 1200px;
   margin: 1em auto;
 }
 
@@ -74,7 +74,7 @@ pre {
 }
 
 .Content, header {
-  flex: 0 0 836px;
+  flex: 0 0 900px;
   margin-bottom: 1.6em;
 }
 
@@ -98,13 +98,13 @@ section {
   margin-bottom: 3em;
 }
 
-@media screen and (max-width: 1135px) {
+@media screen and (max-width: 1200px) {
   .Content, .Toc, header {
     margin-left: auto;
     margin-right: auto;
   }
   .Toc {
-    flex: 0 0 836px;
+    flex: 0 0 900px;
   }
 }
 </style>

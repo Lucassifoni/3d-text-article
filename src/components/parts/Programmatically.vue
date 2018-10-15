@@ -166,7 +166,12 @@
       | It happens that the problem I'm trying to solve is really non-trivial. With a bit more research (and stumbling on the right terms), what I'm trying to solve is called "outward polygon offsetting".
       | <a href="https://stackoverflow.com/questions/1109536/an-algorithm-for-inflating-deflating-offsetting-buffering-polygons">A stackoverflow answer</a> gave me some direction. <a href="http://fcacciola.50webs.com/Offseting%20Methods.htm">This survey gave a nice answer too.</a>
       | What if a simpler strategy could work ? I could reimplement a C++/C#/Delphi library called <a href="http://www.angusj.com/delphi/clipper.php">Clipper</a>, or find a "nice enough" heuristic.
-      | I could copy-paste a stroke algorithm and take its output before rendering. Let's dive into Inkscape sources.
+      | I could copy-paste a stroke algorithm and take its output before rendering. Let's dive into Inkscape sources. Or into Clipper, and extract the subroutine and its dependencies.
+    p For now, let's test with a library found on npm, <a href="https://github.com/w8r/polygon-offset">polygon-offset</a>. It seems nice enough to be free of assumptions about how you describe a polygon, and is satisfied with an array of points.
+    <parser-seventh-step></parser-seventh-step>
+    p Nice ! We have an offset outline, and implementing this by hand would have been a nightmare. Can we make this 3d ? I'll take <a href="https://threejs.org/examples/?q=conv#webgl_geometry_convex">This example from three.js</a> as a starting point. What was meant to be an "implement everything" exercise turns more and more to a "cobble stuff together" exercise. But I now have a nice stack of papers to read. Clicking "download" on three.js homepage yields a 250MB zip file, I should have known what territory I was stepping into.
+    <iframe src="3dtest.html" style="width: 100%;height:600px;"/>
+    <iframe src="3dtest2.html" style="width: 100%;height:600px;"/>
 </template>
 
 <script>
@@ -176,6 +181,7 @@
   import ParserFourthStep from './live/ParserFourthStep';
   import ParserFifthStep from './live/ParserFifthStep';
   import ParserSixthStep from './live/ParserSixthStep';
+  import ParserSeventhStep from './live/ParserSeventhStep';
   import FoldablePre from './FoldablePre';
 
   export default {
@@ -187,6 +193,7 @@
       ParserFourthStep,
       ParserFifthStep,
       ParserSixthStep,
+      ParserSeventhStep,
       FoldablePre,
     },
   };
