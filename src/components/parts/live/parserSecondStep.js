@@ -2,7 +2,7 @@ const Point = function(x, y) { this.x = x; this.y = y; };
 const pointReg = /(?:([-]*\d+\.?(?:\d+)?),([-]*\d+\.?(?:\d+)?))/;
 
 const fakeEnum = (...arr) => arr.reduce((b,a) => { b[a] = Object.keys(b).length; return b; }, {});
-const STATES = fakeEnum('Undefined', 'Move', 'Cubic', 'End');
+export const STATES = fakeEnum('Undefined', 'Move', 'Cubic', 'End');
 const POSITIONS = fakeEnum('Absolute', 'Relative');
 
 export const tokenize = a => a.trim().split(' ');

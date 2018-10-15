@@ -84,7 +84,13 @@ pre {
   margin-bottom: 1.6em;
 }
 
-p, pre {
+h3 {
+  font-weight: bold;
+  margin: 1em 0;
+  font-size: 1.6em;
+}
+
+p {
   margin-bottom: 1.2em;
 }
 

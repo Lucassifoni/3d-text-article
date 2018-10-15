@@ -1,19 +1,19 @@
 <template>
   <div>
-    <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
-    <foldable-pre>{{ result }}</foldable-pre>
+      <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
+      <foldable-pre>{{ result }}</foldable-pre>
       <canvas id="parserthirdstep-canvas" width="100" height="100"></canvas>
   </div>
 </template>
 
 <script>
-  import { parse, tokenize, STATES } from './parserSecondStep';
-  import { render as renderToString } from './renderToString';
-  import { render as renderToCanvas } from './renderToCanvas';
+  import { parse, tokenize, STATES, remapInstrs, convertToPoints } from './parserSixthStep';
+  import { render as renderToString } from './renderToString2';
+  import { render as renderToCanvas } from './renderToCanvas3';
   import FoldablePre from './../FoldablePre';
 
   export default {
-    name: 'ParserThirdStep',
+    name: 'ParserSixthStep',
     components: {
       FoldablePre,
     },
@@ -25,7 +25,7 @@
     },
     methods: {
       parseAndDisplay() {
-        this.result = renderToString(parse(this.input));
+        this.result = convertToPoints(remapInstrs(parse(this.input)));
         this.draw();
       },
       draw() {
@@ -33,7 +33,7 @@
         c.fillStyle = 'lightblue';
         c.strokeStyle = 'black';
         c.fillRect(0,0, 100, 100);
-        renderToCanvas(parse(this.input), c);
+        renderToCanvas(convertToPoints(remapInstrs(parse(this.input))), c);
       },
     },
     mounted() {

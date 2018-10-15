@@ -1,19 +1,21 @@
 <template>
   <div>
-    <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
-    <foldable-pre>{{ result }}</foldable-pre>
+    <p>This will be quite a stretch, since my math has really faded since school. Of course, someone has already solved this before, and an article on Adaptive Subdivision of Bezier curves written by
+      <a href="http://www.antigrain.com/research/adaptive_bezier/index.html">Maxim Shemanarev</a> gives us a reference implementation in C++. That will be easy to convert. I'll take the most naïve one, given at the start of the article, and, no matter the curve, will generate 10 lines out of it.</p>
+      <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
+      <foldable-pre>{{ result }}</foldable-pre>
       <canvas id="parserthirdstep-canvas" width="100" height="100"></canvas>
   </div>
 </template>
 
 <script>
-  import { parse, tokenize, STATES } from './parserSecondStep';
-  import { render as renderToString } from './renderToString';
-  import { render as renderToCanvas } from './renderToCanvas';
+  import { parse, tokenize, STATES, remapInstrs } from './parserFifthStep';
+  import { render as renderToString } from './renderToString2';
+  import { render as renderToCanvas } from './renderToCanvas2';
   import FoldablePre from './../FoldablePre';
 
   export default {
-    name: 'ParserThirdStep',
+    name: 'ParserFifthStep',
     components: {
       FoldablePre,
     },
@@ -25,7 +27,7 @@
     },
     methods: {
       parseAndDisplay() {
-        this.result = renderToString(parse(this.input));
+        this.result =  remapInstrs(parse(this.input));
         this.draw();
       },
       draw() {
@@ -33,7 +35,7 @@
         c.fillStyle = 'lightblue';
         c.strokeStyle = 'black';
         c.fillRect(0,0, 100, 100);
-        renderToCanvas(parse(this.input), c);
+        renderToCanvas(remapInstrs(parse(this.input)), c);
       },
     },
     mounted() {
