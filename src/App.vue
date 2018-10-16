@@ -2,7 +2,7 @@
 #app
   header
     nav
-      a(href="'https://lucassifoni.info'") &larr; back to lucassifoni.info
+      a(href="https://lucassifoni.info") &larr; back to lucassifoni.info
     h1 Explorations on creating lead type from SVG shapes
     p A notebook about trying to find a silver bullet to automate a tedious manual process.
       | <br>After a bit of manual work, I decided to automate this process.
