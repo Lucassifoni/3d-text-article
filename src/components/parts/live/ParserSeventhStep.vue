@@ -1,7 +1,7 @@
 <template>
   <div>
       <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
-      <foldable-pre>{{ result }}</foldable-pre>
+      <foldable-pre>{{ result }}</foldable-pre>
       <canvas width="300" height="300"></canvas>
       <canvas width="300" height="300"></canvas>
       <canvas width="300" height="300"></canvas>

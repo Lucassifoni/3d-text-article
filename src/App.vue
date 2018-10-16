@@ -1,43 +1,30 @@
-<template>
-  <div id="app">
-    <article>
-      <header>
-        <div class="inner">
-          <h1>{{ $options.$parts.title }}</h1>
-        <p>{{ $options.$parts.description }}</p>
-        </div>
-      </header>
-      <ab-toc>
-        <ul>
-          <li v-for="(part, index) in $options.$parts.parts" :key="index">
-            <a :href="`#part-${index}`">#{{index}} - {{ part.title }}</a>
-          </li>
-        </ul>
-      </ab-toc>
-      <ab-content>
-        <div v-for="(part, index) in $options.$parts.parts" :id="`#part-${index}`" :key="index">
-          <h2>#{{ index }} - {{ part.title }}</h2>
-          <h3>{{ part.description }}</h3>
-          <component :is="part.component"></component>
-        </div>
-      </ab-content>
-    </article>
-  </div>
+<template lang="pug">
+#app
+  header
+    nav
+      a(href="'https://lucassifoni.info'") &larr; back to lucassifoni.info
+    h1 Explorations on creating lead type from SVG shapes
+    p A notebook about trying to find a silver bullet to automate a tedious manual process.
+      | <br>After a bit of manual work, I decided to automate this process.
+      | It turns out that this process was absolutely non-trivial, and that I'd better develop a strict framework and guidelines around doing it manually.
+
+  main.Content
+    article
+      manual
+      programmatically
 </template>
 
 <script>
-import AbContent from './components/Content';
-import AbToc from './components/Toc';
-import mapping from './components/mapping';
+import Manual from './components/parts/Manual';
+import Programmatically from './components/parts/Programmatically';
 /* eslint-disable-next-line */
 import highlight from './highlight/highlight.pack.js';
 
 export default {
   name: 'app',
-  $parts: mapping,
   components: {
-    AbToc,
-    AbContent,
+    Manual,
+    Programmatically,
   },
   mounted() {
     if (window && window.requestIdleCallback) {
@@ -52,59 +39,103 @@ export default {
 </script>
 
 <style>
-@import '~bulma/css/bulma.min.css';
 @import './highlight/mono-blue.css';
+
+html * {
+  box-sizing: border-box;
+}
 
 body {
   width: 100%;
-  max-width: 1200px;
-  margin: 1em auto;
+  max-width: 960px;
+  margin: 2em auto;
+  padding: 1em;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAABCCAYAAAACPxW5AAACPUlEQVRogd1bS7IDIQj0/ufMNmfgrWYqlSg00CjzepXMKKj8MRkiIu+XLKG90xCd56H3+ez6/P1ssBfF3lgWQ3t5esMM/vcGZ+KuYGgB5WGp7AVVghZD5kFUHd6oJN7BQf1I8LTdsWmbKspiZM2L2p41b+pkWNgpyVkcFCGpaIWtsQ5ndAnMpV7UYuDV+ypE+E6dTFblrBwxCw8tVybjJa6Nt+hkD+SaD4cJhCFrUUwsN1gR8D3qakkeXV840DPAkphGh+pkUOz0wi4JompTkXZFD2VrLsqagz4TATKZUyUPq/AtKZc8i2G9X0pQJ/l8TLtqGVuJ5q1V7Y+0BLsn3v9GRVe5NBzo0c4yugjWWLhlUYmTnrks0O+2TShMVLcM0eqCuY42PZkZGDYeqiZOH0q6ZVHFzCsRBm+6F2XaEyO7Odr4rcb7lbhd0tStUv0sNTdb9x5mnrFVlyvauFuC3eGp4L9xx0GNSJWNZXswSDhLSZBZw2XmaXBvMOtQdnlcuHW/KyBn6VF7MuyMpALuy5cI8dV3Bk0UbaqJqC1bjs59u7TDnpjjHxHoRfAD/0nVTgRxxniUXtqLas86APo5ZffmroYjNpjNQT3zqPVgRzV1/+L3RHc6M7dd49fqnXoP7TFxMIqtGzxho7Rqgm2brMMorQcrnQzck4kw2JWIIzStCxz4doklyWjSHAUkQbT26oiSv/agjgfpjmftEyqXOqRi0Y1S4yByEExJIWiXyWRUcjY3fX1mOZ5dOesKf2a9V39bDHoAAAAAAElFTkSuQmCC);
 }
 
-article {
+figure {
+  width: 100%;
+  max-width: 600px;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+}
+
+figure span.author {
+  display: block;
+  font-style: italic;
+  color: darkgrey;
+  font-size: 0.85em;
+  margin-bottom: 1em;
+}
+
+h1, h2, h3, h4 {
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+section h2, section h3 {
+  margin-top: 2em;
+}
+
+p {
   font-family: serif;
-  display: flex;
-  flex-wrap: wrap;
+  max-width: 70ch;
+  line-height: 1.4;
+}
+
+p code {
+  display: inline-block;
+  background: lightpink;
+  font-size: 1em;
+  padding: 1px 3px;
 }
 
 pre {
   font-family: monospace;
+  font-size: 14px;
   white-space: pre-wrap;
   padding: 0;
-}
-
-.Content, header {
-  flex: 0 0 900px;
-  margin-bottom: 1.6em;
-}
-
-.Toc {
-  flex: 0 1 300px;
-  order: -1;
-  margin-bottom: 1.6em;
-}
-
-h3 {
-  font-weight: bold;
-  margin: 1em 0;
-  font-size: 1.6em;
 }
 
 p {
   margin-bottom: 1.2em;
 }
 
+textarea {
+  width: 100%;
+  max-width: 960px;
+  min-height: 5em;
+  padding: .5em;
+  background: #ffffc8;
+}
+
 section {
   margin-bottom: 3em;
 }
 
-@media screen and (max-width: 1200px) {
-  .Content, .Toc, header {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .Toc {
-    flex: 0 0 900px;
-  }
+a {
+  font-weight: 700;
+  color: orangered;
+}
+
+table {
+  padding: 5px;
+}
+
+tr {
+  padding: 5px;
+}
+
+td, th {
+  padding: 5px; 
+  border: 1px solid lightgrey;
+}
+
+figure {
+  margin-left: 0;
+  padding-left: 1em;
 }
 </style>

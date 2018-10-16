@@ -1,7 +1,12 @@
 <template>
   <div>
     <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
-    <foldable-pre>{{ result }}</foldable-pre>
+    <foldable-pre>{{ result }}</foldable-pre>
+    <p>Rendering to text is just a matter of pretty-printing AST nodes, while rendering to a canvas is conveniently a 1-to-1 mapping of our instructions to CanvasRenderingContext2D methods.</p>
+    <ul>
+      <li>move(point) -> c2d.moveTo(x, y)</li>
+      <li>cubic(point, point, point, point) -> c2d.moveTo(...points[1]), c2d.bezierCurveTo(...points[1-3])</li>
+    </ul>
       <canvas id="parserthirdstep-canvas" width="300" height="300"></canvas>
   </div>
 </template>

@@ -3,8 +3,9 @@
     <p>This will be quite a stretch, since my math has really faded since school. Of course, someone has already solved this before, and an article on Adaptive Subdivision of Bezier curves written by
       <a href="http://www.antigrain.com/research/adaptive_bezier/index.html">Maxim Shemanarev</a> gives us a reference implementation in C++. That will be easy to convert. I'll take the most naïve one, given at the start of the article, and, no matter the curve, will generate 10 lines out of it.</p>
       <textarea class="textarea" v-model="input" @change="parseAndDisplay"></textarea>
-      <foldable-pre>{{ result }}</foldable-pre>
+      <foldable-pre>{{ result }}</foldable-pre>
       <canvas id="parserthirdstep-canvas" width="300" height="300"></canvas>
+      <p>We can see the result is still quite pleasant.</p>
   </div>
 </template>
 

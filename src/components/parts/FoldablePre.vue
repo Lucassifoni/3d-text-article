@@ -19,7 +19,9 @@
 
 <style>
  .FoldablePre {
-    margin-bottom: 1em;
+    margin-bottom: 3em;
+    background: #f5f5f5;
+    padding: .5em;
  }
 
  .FoldablePre code {
@@ -27,7 +29,7 @@
  }
 
  .FoldablePre code {
-     max-height: 10em;
+     max-height: 16em;
      overflow-y: scroll;
  }
 
