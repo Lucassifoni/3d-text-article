@@ -795,4 +795,4 @@ window.CLOUD_POINT_1 = [
       20.930658148509398,
       52.851239094118554
     ]
-  ].map(p => [parseInt(p[0],10) - 50,parseInt(p[1],10) - 50,0]);
+  ].map(p => [parseInt(p[0],10) * 0.2 - 5,parseInt(p[1],10) * 0.2 - 5]);

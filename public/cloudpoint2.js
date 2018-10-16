@@ -771,4 +771,4 @@ window.CLOUD_POINT_2 = [
     50,
     50
   ]
-].map(p => [parseInt(p[0],10) - 50, parseInt(p[1],10) - 50, Math.random() * 5 ]);
+].map(p => [parseInt(p[0],10) * 0.2 - 5, parseInt(p[1],10) * 0.2 - 5, 5 ]);

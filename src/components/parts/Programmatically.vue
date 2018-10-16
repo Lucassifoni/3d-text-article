@@ -170,8 +170,10 @@
     p For now, let's test with a library found on npm, <a href="https://github.com/w8r/polygon-offset">polygon-offset</a>. It seems nice enough to be free of assumptions about how you describe a polygon, and is satisfied with an array of points.
     <parser-seventh-step></parser-seventh-step>
     p Nice ! We have an offset outline, and implementing this by hand would have been a nightmare. Can we make this 3d ? I'll take <a href="https://threejs.org/examples/?q=conv#webgl_geometry_convex">This example from three.js</a> as a starting point. What was meant to be an "implement everything" exercise turns more and more to a "cobble stuff together" exercise. But I now have a nice stack of papers to read. Clicking "download" on three.js homepage yields a 250MB zip file, I should have known what territory I was stepping into.
-    <iframe src="3dtest.html" style="width: 100%;height:600px;"/>
     <iframe src="3dtest2.html" style="width: 100%;height:600px;"/>
+    p This test, an adaptation of THREE.js's example "ConvexGeometry", reveals that a naïve culling approach won't be enough: our polygons are concave.
+    p Let's dive into <a href="https://en.wikipedia.org/wiki/Polygon_triangulation">polygon triangulation</a>, I guess ?
+    p Or, let's develop a manual process.
 </template>
 
 <script>
