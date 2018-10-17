@@ -181,8 +181,8 @@
     p Meaning : move([1,0]), line([1,0] [5,0]), line([5, 0] [7,2]) becomes [1,0],[1,0],[5,0],[5,0],[7,2] then [1,0],[5,0],[7,2].
 
     figure
-      img(src="/pictures/m_1.png")
-      img(src="/pictures/m_2.png")
+      img(src="pictures/m_1.jpg")
+      img(src="pictures/m_2.jpg")
       span.author Drawings made by Laura Savignac to help me find a method
     
     p We now have points instead of curves, and a method, we'll proceed to do this scale-up algorithm. Or will we ?
@@ -196,11 +196,23 @@
       | I could copy-paste a stroke algorithm and take its output before rendering. Let's dive into Inkscape sources. Or into Clipper, and extract the subroutine and its dependencies.
     p For now, let's test with a library found on npm, <a href="https://github.com/w8r/polygon-offset">polygon-offset</a>. It seems nice enough to be free of assumptions about how you describe a polygon, and is satisfied with an array of points.
     <parser-seventh-step></parser-seventh-step>
-    p Nice ! We have an offset outline, and implementing this by hand would have been a nightmare. Can we make this 3d ? I'll take <a href="https://threejs.org/examples/?q=conv#webgl_geometry_convex">This example from three.js</a> as a starting point. What was meant to be an "implement everything" exercise turns more and more to a "cobble stuff together" exercise. But I now have a nice stack of papers to read. Clicking "download" on three.js homepage yields a 250MB zip file, I should have known what territory I was stepping into.
-    <iframe src="3dtest2.html" style="width: 100%;height:600px;"/>
+    p We have an offset outline, and implementing this by hand would have been a nightmare. Can we make this 3d ? I'll take <a href="https://threejs.org/examples/?q=conv#webgl_geometry_convex">This example from three.js</a> as a starting point. What was meant to be an "implement everything" exercise turns more and more to a "cobble stuff together" exercise. But I now have a nice stack of papers to read. Clicking "download" on three.js homepage yields a 250MB zip file, I should have known what territory I was stepping into.
+    figure
+      img(src="pictures/threejsconvex.jpg")
+      span.author Three.js's example adapted with current path & offset data.
     p This test, an adaptation of THREE.js's example "ConvexGeometry", reveals that a naïve culling approach won't be enough: our polygons are concave.
     p Let's dive into <a href="https://en.wikipedia.org/wiki/Polygon_triangulation">polygon triangulation</a>, I guess ? There are naïve algorithms available, and I'll then proceed to implement stitching between the original and offset shape.
+    figure
+      img(src="pictures/openscad.jpg")
+      span.author An adaptation of a script found on the OPENSCAD forums. I can't find the link back, email me if you're the author !
+      img(src="pictures/h_svg.jpg")
+      span.author my starting point
+      img(src="pictures/svg_3.jpg")
+      span.author I should have known before starting, with those manual tests, that my naïve approach wasn't going to cut it.
     p Or, let's develop a manual process with straight guidelines.
+    figure
+      img(src="pictures/u_3d.jpg")
+      img(src="pictures/u_3d_print.jpg")
     p Thanks for reading ! <a href="#top">&uarr; back to top</a>
 </template>
 
