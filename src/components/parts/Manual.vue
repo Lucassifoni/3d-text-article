@@ -24,6 +24,9 @@
       img(src="pictures/letter_h_cura.jpg")
       span.author and finally sliced in Cura
     p This process is tedious. I thought I could automate it, starting from SVG path data. The rest of this page shows how this was way more complex than I thought, and, after a week of exploration, it's obvious I should have thought of intersecting paths, paths with holes, concave shapes, and a lot more traps.
+    figure
+      img(src="pictures/u_3d.jpg")
+      img(src="pictures/u_3d_print.jpg")
 </template>
 
 <script>

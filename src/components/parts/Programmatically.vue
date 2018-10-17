@@ -57,6 +57,11 @@
           td Draw a segment of an ellipse.
           td A statements draw a segment of an ellipse, given a start point, end point, x radius, y radius, rotation of the ellipse, and direction. Two additional parameters, large-arc and sweep, are flags giving directions on which part of the ellipse should be drawn.
 
+    figure
+      img(src="pictures/man_1.jpg")
+      img(src="pictures/man_3.jpg")
+      img(src="pictures/man_2.jpg")
+      span.author early sketches of the process as I imagined it
     p With those elements in mind, we can decipher the above svg path, and annotate it :
     <foldable-pre>
         | m 205.47289,169.14572 // Move to (205.47289, 169.14572)
@@ -210,9 +215,6 @@
       img(src="pictures/svg_3.jpg")
       span.author I should have known before starting, with those manual tests, that my naïve approach wasn't going to cut it.
     p Or, let's develop a manual process with straight guidelines.
-    figure
-      img(src="pictures/u_3d.jpg")
-      img(src="pictures/u_3d_print.jpg")
     p Thanks for reading ! <a href="#top">&uarr; back to top</a>
 </template>
 
