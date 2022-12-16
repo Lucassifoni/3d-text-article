@@ -11,13 +11,13 @@ A first manual attempt
 
 A bit of context is needed on what I'm trying to attain. I'd like to be able to be self-sufficient on the production of lead-like movable characters and shapes.
 
-![](pictures/lead_type.jpg)This image was originally posted to Flickr by quinet at https://flickr.com/photos/91994044@N00/25792503796.
+![](public/pictures/lead_type.jpg)This image was originally posted to Flickr by quinet at https://flickr.com/photos/91994044@N00/25792503796.
 
 In Toulouse, the place I live in southwestern France, some workshops offer their CNC machining services and are able to produce aluminum plates at the correct height for a typographic press. But I'd like a typographic press to become an experimentable tool, rather than a final process, marked by the need to be absolutely certain of a layout before sending it to be engraved.
 
 A distinct, but crucial feature of engraved aluminum plates or lead type was that the shape to be printed wasn't just extruded out of its substrate. The shape emerges of a pillar similar to an offset of its outline. On the figure below, you can see this slight offset. Extruding a shape is obviously simple, but this gives strength to the character.
 
-![](pictures/lead_type_2.jpg)Free picture by https://fr.freeimages.com/photo/lead-type-1-1460305
+![](public/pictures/lead_type_2.jpg)Free picture by https://fr.freeimages.com/photo/lead-type-1-1460305
 
 ### How can we reproduce this slope manually ?
 
@@ -25,11 +25,11 @@ Even more crucially, if I'm headed towards lost PLA aluminum casting with 3D pri
 
 This slope is quite tedious to generate manually : I start from path data from Inkscape or Illustrator, import it into Blender, extrude it, offset it with Offset Scale (Alt + S), intersect it with a regular cube to suppress distorsion from Offset Scale, export it to a STL file, clean it in Netfabb, and then slice it in Cura.
 
-![](pictures/letter_h_svg.jpg)"h" bold italic in Input from FontBureau, in Inkscape![](pictures/letter_h_blender.jpg)after an import and offset extrusion in Blender![](pictures/letter_h_netfabb.jpg)then imported into Netfabb![](pictures/letter_h_cura.jpg)and finally sliced in Cura
+![](public/pictures/letter_h_svg.jpg)"h" bold italic in Input from FontBureau, in Inkscape![](public/pictures/letter_h_blender.jpg)after an import and offset extrusion in Blender![](public/pictures/letter_h_netfabb.jpg)then imported into Netfabb![](public/pictures/letter_h_cura.jpg)and finally sliced in Cura
 
 This process is tedious. I thought I could automate it, starting from SVG path data. The rest of this page shows how this was way more complex than I thought, and, after a week of exploration, it's obvious I should have thought of intersecting paths, paths with holes, concave shapes, and a lot more traps.
 
-![](pictures/u_3d.jpg)![](pictures/u_3d_print.jpg)
+![](public/pictures/u_3d.jpg)![](public/pictures/u_3d_print.jpg)
 
 Creating a lead type 3D model with its slope, from raw SVG path data.
 ---------------------------------------------------------------------
@@ -112,7 +112,7 @@ Draw a segment of an ellipse.
 
 A statements draw a segment of an ellipse, given a start point, end point, x radius, y radius, rotation of the ellipse, and direction. Two additional parameters, large-arc and sweep, are flags giving directions on which part of the ellipse should be drawn.
 
-![](pictures/man_1.jpg)![](pictures/man_3.jpg)![](pictures/man_2.jpg)early sketches of the process as I imagined it
+![](public/pictures/man_1.jpg)![](public/pictures/man_3.jpg)![](public/pictures/man_2.jpg)early sketches of the process as I imagined it
 
 With those elements in mind, we can decipher the above svg path, and annotate it :
 
@@ -3687,7 +3687,7 @@ Let's draw points instead of lines now, by writing a converter from instructions
 
 Meaning : move(\[1,0\]), line(\[1,0\] \[5,0\]), line(\[5, 0\] \[7,2\]) becomes \[1,0\],\[1,0\],\[5,0\],\[5,0\],\[7,2\] then \[1,0\],\[5,0\],\[7,2\].
 
-![](pictures/m_1.jpg)![](pictures/m_2.jpg)Drawings made by Laura Savignac to help me find a method
+![](public/pictures/m_1.jpg)![](public/pictures/m_2.jpg)Drawings made by Laura Savignac to help me find a method
 
 We now have points instead of curves, and a method, we'll proceed to do this scale-up algorithm. Or will we ?
 
@@ -5253,13 +5253,13 @@ For now, let's test with a library found on npm, [polygon-offset](https://github
 
 We have an offset outline, and implementing this by hand would have been a nightmare. Can we make this 3d ? I'll take [This example from three.js](https://threejs.org/examples/?q=conv#webgl_geometry_convex) as a starting point. What was meant to be an "implement everything" exercise turns more and more to a "cobble stuff together" exercise. But I now have a nice stack of papers to read. Clicking "download" on three.js homepage yields a 250MB zip file, I should have known what territory I was stepping into.
 
-![](pictures/threejsconvex.jpg)Three.js's example adapted with current path & offset data.
+![](public/pictures/threejsconvex.jpg)Three.js's example adapted with current path & offset data.
 
 This test, an adaptation of THREE.js's example "ConvexGeometry", reveals that a naïve culling approach won't be enough: our polygons are concave.
 
 Let's dive into [polygon triangulation](https://en.wikipedia.org/wiki/Polygon_triangulation), I guess ? There are naïve algorithms available, and I'll then proceed to implement stitching between the original and offset shape.
 
-![](pictures/openscad.jpg)An adaptation of a script found on the OPENSCAD forums. I can't find the link back, email me if you're the author !![](pictures/h_svg.jpg)my starting point![](pictures/svg_3.jpg)I should have known before starting, with those manual tests, that my naïve approach wasn't going to cut it.
+![](public/pictures/openscad.jpg)An adaptation of a script found on the OPENSCAD forums. I can't find the link back, email me if you're the author !![](public/pictures/h_svg.jpg)my starting point![](public/pictures/svg_3.jpg)I should have known before starting, with those manual tests, that my naïve approach wasn't going to cut it.
 
 Or, let's develop a manual process with straight guidelines.
 
